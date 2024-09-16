@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Job;
-use App\Models\Tag;
 use App\Models\Employer;
 
 it('belongs to an employer', function () {

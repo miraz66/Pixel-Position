@@ -33,8 +33,10 @@ const Tag = [
     "Cloud",
 ];
 
-export default function Index() {
+export default function Index({ jobs }) {
     const Array = [1, 1, 1];
+
+    console.log(jobs);
 
     return (
         <div className="bg-primary font-hanken-grotesk text-white">
