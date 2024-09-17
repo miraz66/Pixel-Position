@@ -6,13 +6,15 @@ export default function ({ job, tags }) {
             <div className="group mx-auto flex max-w-5xl cursor-pointer gap-10 rounded-lg border border-white/5 bg-white/5 p-6 transition-colors duration-300 hover:border hover:border-blue-500/30">
                 <img
                     className="h-28 w-28 rounded-md"
-                    src={job.company_logo}
+                    src={job.employer.logo}
                     alt=""
                 />
 
                 <div className="w-full font-bold">
                     <div className="flex justify-between">
-                        <p className="text-sm text-gray-400">GovExec</p>
+                        <p className="text-sm text-gray-400">
+                            {job.employer.name}
+                        </p>
                         <div className="flex items-center gap-2">
                             <p className="rounded-md border border-gray-700/60 bg-primary p-1 px-2 text-xs">
                                 {job.location}

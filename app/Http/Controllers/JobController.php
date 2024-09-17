@@ -15,7 +15,7 @@ class JobController extends Controller
     public function index()
     {
         return inertia('Home/Index', [
-            'jobs' => Job::all(),
+            'jobs' => Job::with('employer')->get(),
             'tags'  => Tag::all(),
         ]);
     }

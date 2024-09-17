@@ -33,9 +33,7 @@ const Tag = [
     "Cloud",
 ];
 
-export default function Index({ jobs, tags }) {
-    const Array = [1, 1, 1];
-
+export default function Index({ jobs, tags, tag }) {
     return (
         <div className="bg-primary font-hanken-grotesk text-white">
             <Head title="Home" />

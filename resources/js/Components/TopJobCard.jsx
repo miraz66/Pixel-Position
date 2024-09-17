@@ -2,12 +2,13 @@ import { Link } from "@inertiajs/react";
 
 export default function TopJobCard({ job, tags }) {
     console.log(job);
+    console.log(job.employer);
     console.log(tags);
 
     return (
         <>
             <div className="group w-1/3 cursor-pointer rounded-xl border border-white/5 bg-white/5 p-4 transition-colors duration-300 hover:border hover:border-blue-500/30">
-                <div className="self-start text-base">Laracasts</div>
+                <div className="self-start text-sm">{job.employer.name}</div>
 
                 <div className="mx-auto max-w-80 py-8 text-center">
                     <h1 className="text-2xl transition-colors duration-300 group-hover:text-blue-500">
@@ -33,7 +34,7 @@ export default function TopJobCard({ job, tags }) {
 
                     <img
                         className="h-14 w-14 rounded"
-                        src={job.company_logo}
+                        src={job.employer.logo}
                         alt="company-logo"
                     />
                 </div>
