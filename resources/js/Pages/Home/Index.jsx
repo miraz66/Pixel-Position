@@ -33,10 +33,8 @@ const Tag = [
     "Cloud",
 ];
 
-export default function Index({ jobs }) {
+export default function Index({ jobs, tags }) {
     const Array = [1, 1, 1];
-
-    console.log(jobs);
 
     return (
         <div className="bg-primary font-hanken-grotesk text-white">
@@ -65,8 +63,8 @@ export default function Index({ jobs }) {
                         </div>
 
                         <div className="flex justify-between gap-10">
-                            {Array.map((_, index) => (
-                                <TopJobCard key={index} />
+                            {jobs.slice(0, 3).map((job, index) => (
+                                <TopJobCard job={job} tags={tags} key={index} />
                             ))}
                         </div>
                     </div>
@@ -100,9 +98,9 @@ export default function Index({ jobs }) {
                         </div>
 
                         <div className="space-y-6">
-                            {Array.map((_, index) => (
+                            {jobs.map((job, index) => (
                                 <div key={index}>
-                                    <FindJobCard />
+                                    <FindJobCard job={job} tags={tags} />
                                 </div>
                             ))}
                         </div>
