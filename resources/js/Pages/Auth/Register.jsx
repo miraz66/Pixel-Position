@@ -11,7 +11,7 @@ export default function Register() {
         email: "",
         password: "",
         password_confirmation: "",
-        employer: "",
+        employerName: "",
         logo: "",
     });
 
@@ -113,12 +113,14 @@ export default function Register() {
                     <InputLabel htmlFor="employer" value="Employer" />
 
                     <TextInput
-                        id="employer"
-                        name="employer"
-                        value={data.employer}
+                        id="employerName"
+                        name="employerName"
+                        value={data.employerName}
                         className="mt-1 block w-full"
-                        autoComplete="employer"
-                        onChange={(e) => setData("employer", e.target.value)}
+                        autoComplete="employerName"
+                        onChange={(e) =>
+                            setData("employerName", e.target.value)
+                        }
                         required
                     />
 
@@ -132,10 +134,9 @@ export default function Register() {
                         id="logo"
                         name="logo"
                         type="file"
-                        value={data.logo}
                         className="mt-1 block w-full"
                         autoComplete="logo"
-                        onChange={(e) => setData("logo", e.target.value)}
+                        onChange={(e) => setData("logo", e.target.files[0])}
                         required
                     />
 

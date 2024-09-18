@@ -38,22 +38,31 @@ class RegisteredUserController extends Controller
         ]);
 
         $employerAttributes = $request->validate([
-            'employer' => 'required|string|max:255',
-            'logo' => ['required', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+            'employerName' => 'required|string|max:255',
+            'logo' => 'required|file|mimes:png,jpg,jpeg',
         ]);
 
-        dd($employerAttributes);
-
+        // Create the user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        // Store the logo and add the path to $employerAttributes
+        $logoPath = $request->file('logo')->store('logos');
+        $employerAttributes['logo'] = $logoPath;
 
+        // Create employer record associated with the user
+        $user->employer()->create([
+            'name' => $employerAttributes['employerName'],
+            'logo' => $employerAttributes['logo'],
+        ]);
+
+        // Trigger event and login
+        event(new Registered($user));
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('dashboard'));
     }
 }
