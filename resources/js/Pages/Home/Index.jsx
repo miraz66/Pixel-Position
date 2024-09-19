@@ -33,11 +33,11 @@ const Tag = [
     "Cloud",
 ];
 
-export default function Index({ jobs, tags, tag }) {
+export default function Index({ jobs, tags, auth }) {
     return (
         <div className="bg-primary font-hanken-grotesk text-white">
             <Head title="Home" />
-            <Navbar />
+            <Navbar auth={auth} />
 
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-4xl py-20">

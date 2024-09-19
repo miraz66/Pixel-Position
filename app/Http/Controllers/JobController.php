@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreJobRequest;
-use App\Http\Requests\UpdateJobRequest;
 use App\Models\Job;
 use App\Models\Tag;
+use App\Http\Requests\StoreJobRequest;
+use App\Http\Requests\UpdateJobRequest;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -17,6 +18,7 @@ class JobController extends Controller
         return inertia('Home/Index', [
             'jobs' => Job::with('employer')->get(),
             'tags'  => Tag::all(),
+            'auth'  => Auth::user() ? true : false,
         ]);
     }
 
