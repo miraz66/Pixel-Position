@@ -17,7 +17,17 @@ class TagFactory extends Factory
     public function definition(): array
     {
         return [
-            "name"=> fake()->unique()->randomElement(["Backend", 'Frontend', 'DevOps']),
+            "name" => fake()->unique()->randomElement([
+                'Frontend',
+                'Backend',
+                'Fullstack',
+                'UI/UX',
+                'Mobile',
+                'DevOps',
+                'QA',
+                'Data Science',
+                'Cloud'
+            ]),
         ];
     }
 }

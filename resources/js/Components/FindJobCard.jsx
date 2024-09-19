@@ -7,7 +7,7 @@ export default function ({ job, tags }) {
                 <img
                     className="h-28 w-28 rounded-md"
                     src={job.employer.logo}
-                    alt=""
+                    alt="logo"
                 />
 
                 <div className="w-full font-bold">
@@ -36,7 +36,7 @@ export default function ({ job, tags }) {
                                 <Link
                                     key={index}
                                     className="rounded-md bg-white/10 px-2 py-1 text-sm transition-colors duration-300 hover:bg-white/25 hover:text-white"
-                                    href=""
+                                    href={"tags/" + name}
                                 >
                                     {name}
                                 </Link>

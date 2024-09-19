@@ -5,7 +5,7 @@ export default function Navbar({ auth }) {
     return (
         <div className="border-b border-gray-800 bg-primary">
             <div className="mx-auto flex max-w-7xl justify-between py-4 text-white sm:px-6 lg:px-8">
-                <Link>
+                <Link href="/" className="flex items-center">
                     <img src={Logo} alt="logo" />
                 </Link>
                 <div className="space-x-8">

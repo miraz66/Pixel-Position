@@ -21,7 +21,7 @@ export default function TopJobCard({ job, tags }) {
                             <Link
                                 key={index}
                                 className="rounded-md bg-white/10 px-2 py-1 text-xs transition-colors duration-300 hover:bg-white/25 hover:text-white"
-                                href=""
+                                href={"tags/" + name}
                             >
                                 {name}
                             </Link>

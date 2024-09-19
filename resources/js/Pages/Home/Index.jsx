@@ -1,5 +1,6 @@
 import FindJobCard from "@/Components/FindJobCard";
 import Navbar from "@/Components/Navbar";
+import TextInput from "@/Components/TextInput";
 import TopJobCard from "@/Components/TopJobCard";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
@@ -44,11 +45,16 @@ export default function Index({ jobs, tags, auth }) {
                     <h1 className="pb-6 text-center text-3xl font-bold">
                         Let's Find You A Great Job
                     </h1>
-                    <input
-                        className="w-full rounded-lg border border-gray-800/70 bg-white/5 px-4 py-3"
-                        type="search"
-                        placeholder="Search for job title, company, or expertise ..."
-                    />
+
+                    {/* Search Bar */}
+                    <form action="/search" method="GET">
+                        <TextInput
+                            className="w-full px-4 py-3 dark:bg-white/5"
+                            type="text"
+                            name="search"
+                            placeholder="Search Jobs..."
+                        />
+                    </form>
                 </div>
 
                 {/* Jobs */}
@@ -78,7 +84,7 @@ export default function Index({ jobs, tags, auth }) {
                             {Tag.map((tag, index) => (
                                 <Link
                                     key={index}
-                                    href=""
+                                    href={"tags/" + tag}
                                     className="rounded-md bg-white/10 px-2 py-1 text-sm transition-colors duration-300 hover:bg-white/25 hover:text-white"
                                 >
                                     {tag}
