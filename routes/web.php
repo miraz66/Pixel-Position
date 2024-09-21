@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [JobController::class, 'index']);
+Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/jobs/create', [JobController::class, 'create']);
+Route::post('/jobs/store', [JobController::class, 'store'])->name('jobs.store');
 Route::get('/search', SearchController::class);
 Route::get('/tags/{tag:name}', TagSearchController::class);
 

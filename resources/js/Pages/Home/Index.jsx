@@ -2,7 +2,7 @@ import FindJobCard from "@/Components/FindJobCard";
 import Navbar from "@/Components/Navbar";
 import TextInput from "@/Components/TextInput";
 import TopJobCard from "@/Components/TopJobCard";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import React from "react";
 
 const Tag = [
@@ -35,10 +35,17 @@ const Tag = [
 ];
 
 export default function Index({ jobs, tags, auth }) {
+    const { flash } = usePage().props;
     return (
         <div className="bg-primary font-hanken-grotesk text-white">
             <Head title="Home" />
             <Navbar auth={auth} />
+
+            {flash.success && (
+                <div className="rounded bg-green-500 p-4 text-white">
+                    {flash.success}
+                </div>
+            )}
 
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-4xl py-20">
