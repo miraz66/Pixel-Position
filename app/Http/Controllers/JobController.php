@@ -86,7 +86,7 @@ class JobController extends Controller
         $job = $user->employer->jobs()->create(Arr::except($attrs, 'tags'));
 
         // Attach tags if provided
-        if ($attrs['tag'] ?? false) {
+        if ($attrs['tags'] ?? false) {
             foreach (explode(',', $attrs['tags']) as $tag) {
                 $job->tag($tag);
             }

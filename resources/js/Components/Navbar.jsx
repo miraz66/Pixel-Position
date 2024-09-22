@@ -24,12 +24,23 @@ export default function Navbar({ auth }) {
                 </div>
                 <div>
                     {auth ? (
-                        <Link
-                            href="jobs/create"
-                            className="rounded-md bg-white/10 px-2 py-1 text-sm transition-colors duration-300 hover:bg-white/25 hover:text-white"
-                        >
-                            Post a Job
-                        </Link>
+                        <div className="space-x-4">
+                            <Link
+                                href="jobs/create"
+                                className="rounded-md bg-white/10 px-2 py-1 text-sm transition-colors duration-300 hover:bg-white/25 hover:text-white"
+                            >
+                                Post a Job
+                            </Link>
+
+                            <Link
+                                href={route("logout")}
+                                method="post"
+                                as="button"
+                                className="rounded-md bg-white/10 px-2 py-1 text-sm transition-colors duration-300 hover:bg-white/25 hover:text-white"
+                            >
+                                Log Out
+                            </Link>
+                        </div>
                     ) : (
                         <div className="space-x-4">
                             <Link
