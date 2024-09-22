@@ -41,11 +41,11 @@ export default function Index({ jobs, tags, auth }) {
             <Head title="Home" />
             <Navbar auth={auth} />
 
-            {flash.success && (
+            {/* {flash.success && (
                 <div className="rounded bg-green-500 p-4 text-white">
                     {flash.success}
                 </div>
-            )}
+            )} */}
 
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-4xl py-20">

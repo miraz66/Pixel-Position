@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\Tag;
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
 class JobController extends Controller
 {
@@ -18,7 +19,7 @@ class JobController extends Controller
     public function index()
     {
         return inertia('Home/Index', [
-            'jobs' => Job::with('employer')->get(),
+            'jobs' => Job::with('employer')->latest()->get(),
             'tags'  => Tag::all(),
             'auth'  => Auth::user() ? true : false,
         ]);
@@ -35,23 +36,65 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    // public function store(Request $request)
+    // {
+    //     $attributes = $request->validate([
+    //         'title' => ['required'],
+    //         'salary' => ['required'],
+    //         'location' => ['required'],
+    //         'schedule' => ['required', Rule::in(["Part Time", "Full Time"])],
+    //         'url' => ['required', 'active_url'],
+    //         'tags' => ['nullable'],
+    //     ]);
+
+
+
+    //     // Save the job
+    //     $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, 'tags'));
+
+    //     if ($attributes['tags'] ?? false) {
+    //         foreach (explode(',', $attributes['tags']) as $tag) {
+    //             $job->tags($tag);
+    //         }
+    //     }
+
+    //     // Redirect or return a success message
+    //     return redirect('/')->with('success', 'Job posted successfully!');
+    // }
+
+    public function store(Request $req)
     {
-        $attributes = $request->validate([
+        $attrs = $req->validate([
             'title' => ['required'],
             'salary' => ['required'],
             'location' => ['required'],
-            'schedule' => ['required', Rule::in(["Part Time", "Full Time"])],
+            'schedule' => ['required', Rule::in(['Part Time', 'Full Time'])],
             'url' => ['required', 'active_url'],
-            'tag' => ['nullable'],
+            'tags' => ['nullable'],
         ]);
 
-        // Save the job
-        Job::create($attributes);
+        $attrs['featured'] = $req->has('feature');
 
-        // Redirect or return a success message
-        return redirect('/jobs')->with('success', 'Job posted successfully!');
+        // Ensure the user has an employer
+        $user = Auth::user();
+
+        if (!$user->employer) {
+            return back()->withErrors(['error' => 'No employer associated with this user.']);
+        }
+
+        // Save the job
+        $job = $user->employer->jobs()->create(Arr::except($attrs, 'tags'));
+
+        // Attach tags if provided
+        if ($attrs['tag'] ?? false) {
+            foreach (explode(',', $attrs['tags']) as $tag) {
+                $job->tag($tag);
+            }
+        }
+
+        return redirect('/')->with('success', 'Job posted successfully!');
     }
+
 
 
     /**

@@ -13,7 +13,7 @@ export default function Create() {
         title: "",
         location: "",
         schedule: "",
-        tag: "",
+        tags: "",
         url: "",
         salary: "",
         feature: false, // Add feature field to the form data
@@ -163,12 +163,12 @@ export default function Create() {
                                 value="Feature"
                             />
                             <Checkbox
-                                className="w-full px-4 py-3 dark:bg-white/5"
+                                className="w-full cursor-pointer px-4 py-3 dark:bg-white/5"
                                 name="feature"
                                 checked={data.feature}
                                 onChange={(e) =>
                                     setData("feature", e.target.checked)
-                                } // Handle checkbox state
+                                }
                             />
                             <InputError
                                 message={errors.feature}
@@ -180,18 +180,23 @@ export default function Create() {
                         <div>
                             <InputLabel
                                 className="pb-2"
-                                htmlFor="tag"
-                                value="Tag"
+                                htmlFor="tags"
+                                value="Tags"
                             />
                             <TextInput
                                 className="w-full px-4 py-3 dark:bg-white/5"
                                 type="text"
-                                name="tag"
-                                placeholder="Tag"
-                                value={data.tag}
-                                onChange={(e) => setData("tag", e.target.value)} // Handle tag state
+                                name="tags"
+                                placeholder="Tags"
+                                value={data.tags}
+                                onChange={(e) =>
+                                    setData("tags", e.target.value)
+                                } // Handle tag state
                             />
-                            <InputError message={errors.tag} className="mt-2" />
+                            <InputError
+                                message={errors.tags}
+                                className="mt-2"
+                            />
                         </div>
 
                         {/* Action Buttons */}

@@ -21,7 +21,6 @@ class JobFactory extends Factory
             "employer_id" => Employer::factory(),
             'title' => fake()->jobTitle,
             "salary" => fake()->randomElement(["$50,000 USD", "$90,000 USD", "$120,000 USD", "$150,000 USD", "$200,000 USD"]),
-            "tag" => fake()->randomElement(["Frontend", "Backend", "Fullstack", "UI/UX", "Mobile", "DevOps", "QA", "Data Science", "Cloud"]),
             'location' => 'Remote',
             'schedule' => "Full-time",
             "url" => fake()->url,
